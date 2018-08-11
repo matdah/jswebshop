@@ -11,7 +11,7 @@ https://www.youtube.com/watch?v=U2_x_3dOSI0
 
 ## Installation
 
-Ladda ner filen [webshop.js](webshop.js) (högerklicka och välj "Spara som" eller motsvarande) och inkludera denna till dina webbsidor, lämpligen innan stängande body-tagg.
+Ladda ner filen webshop.js och inkludera denna till dina webbsidor, lämpligen innan stängande body-tagg.
 
 I din HTML-kod kan du sedan, genom att infoga element med specifika ID eller klasser infoga funktionalitet.
 
