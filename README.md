@@ -7,7 +7,7 @@ Du får fritt använda denna JavaScript-kod för detta projekt, och modifiera de
 
 ### Video-demonstration
 
-<div class="demovid"><iframe src="https://www.youtube.com/embed/U2_x_3dOSI0?rel=0&amp;showinfo=0" gesture="media" allow="encrypted-media" allowfullscreen="" width="560" height="315" frameborder="0"></iframe></div>
+https://www.youtube.com/watch?v=U2_x_3dOSI0
 
 ## Installation
 
