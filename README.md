@@ -167,3 +167,7 @@ Om true skickats med som parameter till att lägga vara i varukorgen, och ett el
 <p>Varan <b>Vara #3</b> lagd i varukorgen</p>
 ```
 Den lägger även på en klass vid utskrift, **visible** som tas bort efter tre sekunder. Denna klass kan då användas för att tillfälligt skriva ut ett meddelande till användaren för att tydliggöra att en vara lagts i varukorgen. Ett CSS-exempel: .visible { display: block; } på ett annars dolt element.
+
+
+### Test av branch
+Detta är en test-branch
