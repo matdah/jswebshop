@@ -26,18 +26,18 @@ window.addEventListener("load", showCheckout, false);       // Gå till betalnin
 function addToBasket(el, id, name, cost, image, notify = false) {
 
     // Börja med en vara
-    numOfItems = 1;
+    let numOfItems = 1;
 
     // Sätt en klass på anropande class
     el.classList.add("clicked");
 
     // Läs in listan
-    var currentBasket = JSON.parse(localStorage.getItem("basket"));
+    let currentBasket = JSON.parse(localStorage.getItem("basket"));
 
     if (currentBasket == null) { currentBasket = []; }
 
     // Kontrollera om varan redan finns
-    for (var i = 0; i < currentBasket.length; i++) {
+    for (let i = 0; i < currentBasket.length; i++) {
         if (id == currentBasket[i].artId) {
             numOfItems = currentBasket[i].nums + 1;
             currentBasket.splice(i, 1);
@@ -48,16 +48,16 @@ function addToBasket(el, id, name, cost, image, notify = false) {
     currentBasket.push({ artId: id, artName: name, artCost: cost, artImage: image, nums: numOfItems });
 
     // Konvertera till JSON
-    var jsonStr = JSON.stringify(currentBasket);
+    let jsonStr = JSON.stringify(currentBasket);
     // Lagra
     localStorage.setItem("basket", jsonStr);
 
     // Meddela användare, om notify = true
     if (notify == true) {
-        var timer = null;
+        let timer = null;
 
         if (document.getElementById("notify")) {
-            var notifyText = "<p>Varan <b>" + name + "</b> lagd i varukorgen</p>";
+            let notifyText = "<p>Varan <b>" + name + "</b> lagd i varukorgen</p>";
             // Sätt klass för att visa
             notifyEl.classList.add("visible");
             notifyEl.innerHTML = notifyText;
@@ -79,32 +79,32 @@ function addToBasket(el, id, name, cost, image, notify = false) {
 /* Visa varukorg */
 function showBasket() {
     // Läs in varukorg
-    var basketItems = JSON.parse(localStorage.getItem("basket"));
+    let basketItems = JSON.parse(localStorage.getItem("basket"));
     if (basketItems == null) { basketItems = []; }
 
     // Visa "Visa kassan"-inline-element
     if (basketItems.length > 0) {
         if (document.getElementsByClassName("checkout-inline")) {
-            for (var i = 0; i < checkoutInlineEl.length; i++) {
+            for (let i = 0; i < checkoutInlineEl.length; i++) {
                 checkoutInlineEl[i].style.display = "inline";
             }
         }
     }
 
-    var sum = 0;
-    var numOfItems = 0;
+    let sum = 0;
+    let numOfItems = 0;
     // Utskrift av totalsumma och antal
     if (basketItems.length > 0) {
 
         // Loopa genom varor
-        for (var i = 0; i < basketItems.length; i++) {
+        for (let i = 0; i < basketItems.length; i++) {
             // Räkna ut kostnad och lägg till summa
-            var itemCost = parseInt(basketItems[i].artCost);
+            let itemCost = parseInt(basketItems[i].artCost);
 
             // Flera varor av samma typ - addera kostnaden * antal
             if (basketItems[i].nums > 1) {
-                var count = parseInt(basketItems[i].nums);
-                for (var j = 0; j < count; j++) {
+                let count = parseInt(basketItems[i].nums);
+                for (let j = 0; j < count; j++) {
                     sum += itemCost;
                     numOfItems++;
                 }
@@ -116,21 +116,21 @@ function showBasket() {
     } else {
         // Dölj "Visa kassan"-knappar
         if (document.getElementsByClassName("checkout-button")) {
-            for (var i = 0; i < checkoutButtonEl.length; i++) {
+            for (let i = 0; i < checkoutButtonEl.length; i++) {
                 checkoutButtonEl[i].style.display = "none";
             }
         }
     }
     // Visa antal
     if (document.getElementsByClassName("items-in-basket")) {
-        for (var i = 0; i < itemsInBasketEl.length; i++) {
+        for (let i = 0; i < itemsInBasketEl.length; i++) {
             itemsInBasketEl[i].innerHTML = numOfItems;
         }
     }
 
     // Visa totalsumma
     if (document.getElementsByClassName("total-sum")) {
-        for (var i = 0; i < totalSumEl.length; i++) {
+        for (let i = 0; i < totalSumEl.length; i++) {
             totalSumEl[i].innerHTML = sum + ":-";
         }
     }
@@ -141,18 +141,18 @@ function showBasket() {
         basketEl.innerHTML = "";
 
         if (basketItems.length > 0) {
-            var sum = 0;
-            var numOfItems = 0;
+            let sum = 0;
+            let numOfItems = 0;
 
             // Loopa genom varor
-            for (var i = 0; i < basketItems.length; i++) {
+            for (let i = 0; i < basketItems.length; i++) {
                 // Räkna ut kostnad och lägg till summa
-                var itemCost = parseInt(basketItems[i].artCost);
+                let itemCost = parseInt(basketItems[i].artCost);
 
                 // Flera varor av samma typ - addera kostnaden * antal
                 if (basketItems[i].nums > 1) {
-                    var count = parseInt(basketItems[i].nums);
-                    for (var j = 0; j < count; j++) {
+                    let count = parseInt(basketItems[i].nums);
+                    for (let j = 0; j < count; j++) {
                         sum += itemCost;
                         numOfItems++;
                     }
@@ -162,26 +162,26 @@ function showBasket() {
                 }
 
                 // Skapa nytt element
-                var newItem = document.createElement("li");
+                let newItem = document.createElement("li");
 
                 // Varunamn
-                var newItemName = document.createElement("span");
+                let newItemName = document.createElement("span");
                 newItemName.className = "item-text";
-                var newItemNameText = document.createTextNode(basketItems[i].artName + ", ");
+                let newItemNameText = document.createTextNode(basketItems[i].artName + ", ");
                 newItemName.appendChild(newItemNameText);
                 newItem.appendChild(newItemName);
 
                 // Antal
-                var newItemCount = document.createElement("span");
+                let newItemCount = document.createElement("span");
                 newItemCount.className = "item-count";
-                var newItemCountText = document.createTextNode(basketItems[i].nums + " st ");
+                let newItemCountText = document.createTextNode(basketItems[i].nums + " st ");
                 newItemCount.appendChild(newItemCountText);
                 newItem.appendChild(newItemCount);
 
                 // Varupris
-                var newItemCost = document.createElement("span");
+                let newItemCost = document.createElement("span");
                 newItemCost.className = "item-cost";
-                var newItemCostText = document.createTextNode(itemCost + ":-");
+                let newItemCostText = document.createTextNode(itemCost + ":-");
                 newItemCost.appendChild(newItemCostText);
                 newItem.appendChild(newItemCost);
 
@@ -189,9 +189,9 @@ function showBasket() {
                 basketEl.appendChild(newItem);
             }
             // Lägg till summan sist
-            var newItem = document.createElement("li");
+            let newItem = document.createElement("li");
             newItem.className = "sum";
-            var newItemText = document.createTextNode("Summa: " + sum + ":-");
+            let newItemText = document.createTextNode("Summa: " + sum + ":-");
             newItem.appendChild(newItemText);
 
             // Lägg till i DOM
@@ -199,7 +199,7 @@ function showBasket() {
 
             // Visa "Visa kassan"-knappar
             if (document.getElementsByClassName("checkout-button")) {
-                for (var i = 0; i < checkoutButtonEl.length; i++) {
+                for (let i = 0; i < checkoutButtonEl.length; i++) {
                     checkoutButtonEl[i].style.display = "block";
                 }
             }
@@ -209,7 +209,7 @@ function showBasket() {
 
             // Dölj "Visa kassan"-knappar
             if (document.getElementsByClassName("checkout-button")) {
-                for (var i = 0; i < checkoutButtonEl.length; i++) {
+                for (let i = 0; i < checkoutButtonEl.length; i++) {
                     checkoutButtonEl[i].style.display = "none";
                 }
             }
@@ -226,18 +226,18 @@ function showSmallBasket() {
 
         if (basketItems.length > 0) {
             // Räkna ut totalsumma
-            var sum = 0;
-            var numOfItems = 0;
+            let sum = 0;
+            let numOfItems = 0;
 
             // Loopa genom varor
-            for (var i = 0; i < basketItems.length; i++) {
+            for (let i = 0; i < basketItems.length; i++) {
                 // Räkna ut kostnad och lägg till summa
-                var itemCost = parseInt(basketItems[i].artCost);
+                let itemCost = parseInt(basketItems[i].artCost);
 
                 // Flera varor av samma typ - addera kostnaden * antal
                 if (basketItems[i].nums > 1) {
-                    var count = parseInt(basketItems[i].nums);
-                    for (var j = 0; j < count; j++) {
+                    let count = parseInt(basketItems[i].nums);
+                    for (let j = 0; j < count; j++) {
                         sum += itemCost;
                         numOfItems++;
                     }
@@ -250,7 +250,7 @@ function showSmallBasket() {
 
             // Visa antal
             if (document.getElementsByClassName("items-in-basket")) {
-                for (var i = 0; i < itemsInBasketEl.length; i++) {
+                for (let i = 0; i < itemsInBasketEl.length; i++) {
                     itemsInBasketEl[i].innerHTML = numOfItems;
                 }
             }
@@ -263,7 +263,7 @@ function showSmallBasket() {
 /* Visa kassan */
 function showCheckout() {
     if (document.getElementById("checkout")) {
-        var basketItems = JSON.parse(localStorage.getItem("basket"));
+        let basketItems = JSON.parse(localStorage.getItem("basket"));
         if (basketItems == null) { basketItems = []; }
 
         // Nollställ
@@ -271,18 +271,18 @@ function showCheckout() {
 
         if (basketItems.length > 0) {
             // Räkna ut totalsumma
-            var sum = 0;
+            let sum = 0;
 
             // Loopa genom varor
-            for (var i = 0; i < basketItems.length; i++) {
+            for (let i = 0; i < basketItems.length; i++) {
                 // Räkna ut kostnad och lägg till summa
-                var itemCost = parseInt(basketItems[i].artCost);
-                var itemSumCost = 0;
+                let itemCost = parseInt(basketItems[i].artCost);
+                let itemSumCost = 0;
 
                 // Flera varor av samma typ - addera kostnaden * antal
                 if (basketItems[i].nums > 1) {
-                    var count = parseInt(basketItems[i].nums);
-                    for (var j = 0; j < count; j++) {
+                    let count = parseInt(basketItems[i].nums);
+                    for (let j = 0; j < count; j++) {
                         sum += itemCost;
                         itemSumCost += itemCost;
                     }
@@ -319,14 +319,14 @@ function showCheckout() {
 
 /* Till kassan */
 function checkoutBasket() {
-    var basketItems = JSON.parse(localStorage.getItem("basket"));
+    let basketItems = JSON.parse(localStorage.getItem("basket"));
     if (basketItems != null) {
-        var itemCount = 0;
-        var totalSum = 0;
+        let itemCount = 0;
+        let totalSum = 0;
 
-        for (var i = 0; i < basketItems.length; i++) {
-            var count = parseInt(basketItems[i].nums);
-            for (var j = 0; j < count; j++) {
+        for (let i = 0; i < basketItems.length; i++) {
+            let count = parseInt(basketItems[i].nums);
+            for (let j = 0; j < count; j++) {
                 totalSum += parseInt(basketItems[i].artCost);
                 itemCount++;
             }
