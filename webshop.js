@@ -291,10 +291,10 @@ function showCheckout() {
                     itemSumCost = itemCost;
                 }
 
-                var artId = basketItems[i].artId;
-                var artName = basketItems[i].artName;
-                var numItems = basketItems[i].nums;
-                var artImage = basketItems[i].artImage;
+                let artId = basketItems[i].artId;
+                let artName = basketItems[i].artName;
+                let numItems = basketItems[i].nums;
+                let artImage = basketItems[i].artImage;
 
                 // Skapa nytt element
                 checkoutEl.innerHTML += "<tr>" +
