@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <title>JS-webbshop </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://matdah.github.io/css-template/miun-styles.css">
+</head>
+
+<body>
+    <div id="container">
+        <h1>JavaScript-baserad webbshop</h1>
+
+        <div style="text-align: right;"><a class="btn rightfloat" href="#" target="_blank">Öppna detta dokument i nytt
+                fönster</a></div>
+
+        <p>Detta är ett litet webbshops-system skapat med JavaScript. Den har endast grundläggande funktioner, och är
+            endast
+            tänkt att användas i studiesyfte.
+        </p>
+        <p>Du får fritt använda denna JavaScript-kod för detta projekt, och modifiera den efter behag (under
+            förutsättning att
+            gjorda ändringar noteras överst i filen) - men
+            <b>använd inte denna utanför denna uppgift.</b>
+        </p>
+
+        <h3>Video-demonstration</h3>
+
+        <div class="demovid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/U2_x_3dOSI0?rel=0&amp;showinfo=0"
+                frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+        </div>
+
+        <h2>Installation</h2>
+        <p>Ladda ner filen
+            <a href="webshop.js">webshop.js</a> (högerklicka och välj "Spara som" eller motsvarande) och inkludera denna
+            till dina webbsidor,
+            lämpligen innan stängande body-tagg.
+        </p>
+
+        <p>Ovanstående fil, med tillhörande beskriving finns även tillgänglig på Github: <a
+                href="https://github.com/matdah/jswebshop" target="_blank">https://github.com/matdah/jswebshop</a></p>
+
+        <p>I din HTML-kod kan du sedan, genom att infoga element med specifika ID eller klasser infoga funktionalitet.
+        </p>
+        <p>Följande finns att tillgå:</p>
+
+        <h3>Knapp för att lägga vara i varukorg</h3>
+        <p>Det finns en funktion,
+            <b>addToBasket</b>, som används för att lägga en vara i varukorgen genom att lägga ett onclick-anrop från en
+            knapp,
+            eller annat element.
+            <br> Denna funktion tar följande parametrar:
+        </p>
+        <ul>
+            <li>
+                <b>el</b> - elementet varifrån anropet kommer. Skicka alltid med
+                <b>this</b> till denna
+            </li>
+            <li>
+                <b>id</b> - (Sträng) Artikelnummer/ID för varan, ex. 001 (måste vara unikt)
+            </li>
+            <li>
+                <b>name</b> - (Sträng) Varunamn
+            </li>
+            <li>
+                <b>cost</b> - (Heltal) varans pris
+            </li>
+            <li>
+                <b>image</b> - (Sträng) sökväg och filnamn till produktens bild
+            </li>
+            <li>
+                <b>notify</b> - (Valfri)(Boolean) - om meddelande-rutan ska skrivas ut. Standard = false
+            </li>
+        </ul>
+        <p>Ett exempel på hur en knapp kan se ut:</p>
+        <pre
+            class="code">&lt;button onclick="addToBasket(this, '16-1101','Högtalare (vit)', 245, 'images/speaker_white_small.jpg')"&gt;Köp&lt;/button&gt;</pre>
+
+        <p>När en vara lagts i varukorgen läggs en klass till till det element varifrån funktionen anropades,
+            <b>clicked</b>, så vill du dölja eller på annat sätt indikera att detta gjors går detta att göra med CSS,
+            ex: .clicked
+            { display: none; }
+        </p>
+
+        <h3>#basket</h3>
+        <p>Stor variant av varukorg. Lägg till en unordered list, ul. Exempel:
+        <pre class="code">&lt;ul id="basket"&gt;&lt;/ul&gt;</pre>
+        </p>
+        <p>Utskriften till detta element bli då på denna form (med två varor, för att visa):</p>
+        <pre>&lt;ul id="basket"&gt;
+    &lt;li&gt;
+        &lt;span class="item-text"&gt;Vara #1, &lt;/span&gt;
+        &lt;span class="item-count"&gt;1 st &lt;/span&gt;
+        &lt;span class="item-cost"&gt;100:-&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;span class="item-text"&gt;Vara #2, &lt;/span&gt;
+        &lt;span class="item-count"&gt;1 st &lt;/span&gt;
+        &lt;span class="item-cost"&gt;200:-&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li class="sum"&gt;Summa: 600:-&lt;/li&gt;
+&lt;/ul&gt;</pre>
+
+        <p>Notera klasserna
+            <b>item-text</b>,
+            <b>item-count</b>,
+            <b>item-cost</b> och
+            <b>sum</b> som skapas för att göra det enklare att infoga CSS.
+        </p>
+
+        <h3>#small-basket</h3>
+        <p>En mindre variant av varukorgen, som visar endast antal och totalsumma i text-form. Går att lägga på vilket
+            element
+            som helt, både block- och inline-element.
+            <br> Ett exempel:
+        </p>
+        <pre class="code">&lt;span id="small-basket"&gt;&lt;/span&gt;</pre>
+        <p>Ger motsvarande utskrift:</p>
+        <pre>&lt;span id="small-basket"&gt;2st, 600:-&lt;/span&gt;</pre>
+
+        <h3>#checkout</h3>
+        <p>Id
+            <b>checkout</b> sätts på ett
+            <b>tbody</b>-element inuti en tabell, för att skriva ut varulistan i tabellformat. Denna tabell skrivs ut
+            med 5
+            stycken celler (td) per rad, i ordningen bild, artikelnummer/id, varunamn, antal och pris.
+            <br> Ett exempel:
+        </p>
+
+        <pre class="code">&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Bild&lt;/td&gt;
+            &lt;td&gt;Artikelnr&lt;/td&gt;
+            &lt;td&gt;Varunamn&lt;/td&gt;
+            &lt;td&gt;Antal&lt;/td&gt;
+            &lt;td&gt;Pris&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody id="checkout"&gt;&lt;/tbody&gt;
+&lt;/table&gt;</pre>
+
+        <p>Ger utskrift i följande format:</p>
+        <pre>&lt;table&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Bild&lt;/td&gt;
+                &lt;td&gt;Artikelnr&lt;/td&gt;
+                &lt;td&gt;Varunamn&lt;/td&gt;
+                &lt;td&gt;Antal&lt;/td&gt;
+                &lt;td&gt;Pris&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody id="checkout"&gt;
+            &lt;tr&gt;
+                &lt;td&gt;
+                    &lt;img src="images/image.png" alt="Produktbild för Vara #1"&gt;
+                &lt;/td&gt;
+                &lt;td&gt;16-1101&lt;/td&gt;
+                &lt;td&gt;Vara #1&lt;/td&gt;
+                &lt;td&gt;1 st.&lt;/td&gt;
+                &lt;td&gt;100:-&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;
+                    &lt;img src="images/image.png" alt="Produktbild för Vara #2"&gt;
+                &lt;/td&gt;
+                &lt;td&gt;16-1102&lt;/td&gt;
+                &lt;td&gt;Vara #2&lt;/td&gt;
+                &lt;td&gt;1 st.&lt;/td&gt;
+                &lt;td&gt;200:-&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td colspan="5" class="checkout-sum"&gt;Summa: 300:-&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;</pre>
+
+        <h3>Knappar för att slutföra köp</h3>
+        <p>Det finns två stycken funktioner för att slutföra eller avbryta köp:</p>
+        <ul>
+            <li>
+                <b>checkOutBasket()</b> - skickar (virtuell) beställning.
+            </li>
+            <li>
+                <b>emptyBasket()</b> - rensar varukorgen.
+            </li>
+        </ul>
+        <p>Exempel på dessa två knappar:</p>
+
+        <pre>&lt;button onclick="checkoutBasket()"&gt;Slutför köp&lt;/button&gt;</pre>
+
+        <pre>&lt;button onclick="emptyBasket()"&gt;Töm varukorgen&lt;/button&gt;</pre>
+
+        <h3>Extra funktionalitet</h3>
+        <p>Det finns några ytterligare små funktioner som kan användas efter behov.</p>
+
+        <p>Extra klasser:</p>
+        <ul>
+            <li>
+                <b>.checkout-inline</b> - om varor finns i varukorgen sätts alla element med denna klass till display:
+                inline;
+                (dölj med CSS, vid behov)
+            </li>
+            <li>
+                <b>.checkout-button</b> - om varor finns i varukorgen sätts alla element med denna klass till display:
+                block;
+                - annars display: none;
+            </li>
+            <li>
+                <b>.items-in-basket</b> - skriver ut antal varor i text
+            </li>
+            <li>
+                <b>.total-sum</b> - skriver ut totalsumman i text
+            </li>
+        </ul>
+
+        <h4>Notifiering vid vara lagd till varukorg</h4>
+        <p>Om true skickats med som parameter till att lägga vara i varukorgen, och ett element med id
+            <b>notify</b> finns, skapas följande:
+        </p>
+        <pre>&lt;p&gt;Varan &lt;b&gt;Vara #3&lt;/b&gt; lagd i varukorgen&lt;/p&gt;</pre>
+        <p>Den lägger även på en klass vid utskrift,
+            <b>visible</b> som tas bort efter tre sekunder. Denna klass kan då användas för att tillfälligt skriva ut
+            ett meddelande
+            till användaren för att tydliggöra att en vara lagts i varukorgen. Ett CSS-exempel: .visible { display:
+            block;
+            } på ett annars dolt element.
+        </p>
+
+
+    </div>
+    <!-- /container -->
+</body>
+
+</html>
