@@ -1,8 +1,8 @@
 /*
-* Kod för webbshop, av Mattias Dahlgren, MIUN
+* Kod för webbshop, av Mattias Dahlgren, MIUN.
 * E-post: mattias.dahlgren@miun.se
-* OBS: Denna kod får ej användas utanför projektuppgifter för kursen DT163G, Digital bildbehandling för webb
-* Denna information måste lämnas oförändrad
+* OBS: Denna kod får ej användas utanför projektuppgifter för Mittuniversitetets Webbutvecklings-program.
+* Denna information måste lämnas oförändrad.
 * Har du gjort ändringar i denna fil ska detta beskrivas här i sidhuvudet.
 * 
 * Ändringar gjorda: 
